@@ -28,6 +28,7 @@
     "@nestjs/platform-express": "^11.0.1",
     "bcryptjs": "^3.0.2",
     "class-validator": "^0.14.1",
+    "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.0",
     "reflect-metadata": "^0.2.2",
