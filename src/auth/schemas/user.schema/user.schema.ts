@@ -19,7 +19,6 @@ export class User {
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-// Hash password before save
 UserSchema.pre<UserDocument>('save', async function (next) {
   if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(10);
@@ -27,7 +26,6 @@ UserSchema.pre<UserDocument>('save', async function (next) {
   next();
 });
 
-// ✅ Yup schema defined in the same file
 export const userValidationSchema = yup.object({
   email: yup
     .string()

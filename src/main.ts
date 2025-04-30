@@ -10,7 +10,7 @@ async function bootstrap() {
 
   const port = configService.get<number>('PORT') ?? 3000;
 
-  app.useGlobalInterceptors(new ResponseInterceptor());
+  // app.useGlobalInterceptors(new ResponseInterceptor());
 
   await app
     .listen(port)

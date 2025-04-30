@@ -33,6 +33,7 @@ export class JwtMiddleware implements NestMiddleware {
       console.log(req);
       next();
     } catch (error) {
+      // console.log('ERRORRRRRRRRRRRRRRRRRRRR', error);
       throw new UnauthorizedException('Invalid token');
     }
   }
