@@ -1,0 +1,32 @@
+
+Global error handler
+controller whatever is returned as response should be handled in response handler middleware and all the response should have same object structure { sucess: true, result: data }
+no hard coded values in the code
+move secrets and other variables to env
+done use save instead use insert and update
+
+
+
+# use yup validator if possible
+# Reuse or extend DTO whereever possible
+# 201 should not return user details
+# file naming convention use camel case jwt-auth.guard.ts
+# token should not have user direct information
+# send only selected fields in the response (critical)
+# log every incoming request -> request path, parameters, incoming time, outgoing time, elapsed time
+# bad practise http://localhost:5000/todos/one?todoId=6810b524f35d7b1e0f6eb103 ideally route should be http://localhost:5000/todos/6810b524f35d7b1e0f6eb103
+# Bad:http://localhost:5000/todos/update-task?todoId=6810b524f35d7b1e0f6eb103&taskId=6810b524f35d7b1e0f6eb104
+# Good: http://localhost:5000/todos/6810b524f35d7b1e0f6eb103/task/6810b524f35d7b1e0f6eb104
+# Redo all the routes, all the routes should either have camelcase or somehting else.
+# /todo/:todoId/task/:taskId
+# middleware -> does intercepts the request, it can prevent request from moving further, eg authetincation, signature verification
+# Guard -> is for authorization
+# task should be an separate collection
+# always soft delete
+
+# Learn mongodb connection pool configurations, timeout settings etc
+
+
+
+
+

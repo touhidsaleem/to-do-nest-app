@@ -4,16 +4,14 @@ import {
   Post,
   Body,
   Get,
-  Query,
+  Param,
   Patch,
   Delete,
   Req,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
-import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 
 @Controller('todos')
-@UseGuards(JwtAuthGuard)
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
@@ -27,21 +25,21 @@ export class TodoController {
     return this.todoService.findAll(req.user.sub);
   }
 
-  @Get('one')
-  findOne(@Req() req, @Query('todoId') todoId: string) {
+  @Get('todoId/:todoId')
+  findOne(@Req() req, @Param('todoId') todoId: string) {
     return this.todoService.findOne(req.user.sub, todoId);
   }
 
-  @Post('add-task')
-  addTask(@Req() req, @Query('todoId') todoId: string, @Body() body) {
+  @Post('addTask/todoId/:todoId')
+  addTask(@Req() req, @Param('todoId') todoId: string, @Body() body) {
     return this.todoService.addTask(req.user.sub, todoId, body.text);
   }
 
-  @Patch('update-task')
+  @Patch('updateTask/todoId/:todoId/taskId/:taskId')
   updateTask(
     @Req() req,
-    @Query('todoId') todoId: string,
-    @Query('taskId') taskId: string,
+    @Param('todoId') todoId: string,
+    @Param('taskId') taskId: string,
     @Body() body,
   ) {
     return this.todoService.updateTask(
@@ -52,17 +50,17 @@ export class TodoController {
     );
   }
 
-  @Delete('delete-task')
+  @Delete('deleteTask/todoId/:todoId/taskId/:taskId')
   deleteTask(
     @Req() req,
-    @Query('todoId') todoId: string,
-    @Query('taskId') taskId: string,
+    @Param('todoId') todoId: string,
+    @Param('taskId') taskId: string,
   ) {
     return this.todoService.deleteTask(req.user.sub, todoId, taskId);
   }
 
-  @Delete('delete')
-  delete(@Req() req, @Query('todoId') todoId: string) {
+  @Delete('delete/todoId/:todoId')
+  delete(@Req() req, @Param('todoId') todoId: string) {
     return this.todoService.delete(req.user.sub, todoId);
   }
 }
