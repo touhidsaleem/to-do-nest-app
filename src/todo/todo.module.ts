@@ -5,16 +5,18 @@ import { TodoController } from './todo.controller';
 import { Todo, TodoSchema } from './schemas/todo.schema';
 import { Task, TaskSchema } from './schemas/task.schema';
 import { JwtMiddleware } from 'src/common/middleware/jwt.middleware';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule,
     MongooseModule.forFeature([
       { name: Todo.name, schema: TodoSchema },
       { name: Task.name, schema: TaskSchema },
     ]),
   ],
   controllers: [TodoController],
-  providers: [TodoService],
+  providers: [TodoService, JwtMiddleware],
 })
 export class TodoModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

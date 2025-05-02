@@ -1,10 +1,11 @@
 
-no hard coded values in the code
 move secrets and other variables to env
 done use save instead use insert and update
+Learn mongodb connection pool configurations, timeout settings etc
 
 
 
+# no hard coded values in the code
 # Global error handler
 # controller whatever is returned as response should be handled in response handler middleware and all the response should have same object structure { sucess: true, result: data }
 # use yup validator if possible
@@ -26,7 +27,6 @@ done use save instead use insert and update
 
 
 
-# Learn mongodb connection pool configurations, timeout settings etc
 
 
 
